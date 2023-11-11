@@ -42,4 +42,12 @@ public class Order {
     public boolean isDrink() {
         return menu.isDrink();
     }
+
+    public String getMenuName() {
+        return menu.getName();
+    }
+
+    public int getCount() {
+        return count;
+    }
 }

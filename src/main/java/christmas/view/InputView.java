@@ -1,7 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.dto.OrderRequestDTO;
+import christmas.dto.OrderDTO;
 import java.util.List;
 
 public class InputView {
@@ -25,7 +25,7 @@ public class InputView {
         throw new IllegalArgumentException(DATE_PATTERN_ERROR_MESSAGE);
     }
 
-    public List<OrderRequestDTO> readOrders() {
+    public List<OrderDTO> readOrders() {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
         String ordersString = Console.readLine();
         validateOrders(ordersString);
@@ -43,8 +43,8 @@ public class InputView {
         return List.of(input.split(ORDERS_DELIMITER));
     }
 
-    private OrderRequestDTO parseOrder(String input) {
+    private OrderDTO parseOrder(String input) {
         String[] order = input.split(ORDER_DELIMITER);
-        return new OrderRequestDTO(order[0], Integer.parseInt(order[1]));
+        return new OrderDTO(order[0], Integer.parseInt(order[1]));
     }
 }

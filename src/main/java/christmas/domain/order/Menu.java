@@ -62,4 +62,8 @@ public class Menu {
     public boolean isDrink() {
         return category == Category.DRINK;
     }
+
+    public String getName() {
+        return name;
+    }
 }
