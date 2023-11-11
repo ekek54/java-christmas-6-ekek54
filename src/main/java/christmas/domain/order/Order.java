@@ -50,4 +50,8 @@ public class Order {
     public int getCount() {
         return count;
     }
+
+    public int sumPrice(int sum) {
+        return sum + menu.calculatePrice(count);
+    }
 }

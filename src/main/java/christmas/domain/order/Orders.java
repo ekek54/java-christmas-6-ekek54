@@ -40,4 +40,9 @@ public class Orders {
         }
     }
 
+    public int calculateTotalPrice() {
+        return orders.stream()
+                .reduce(0, (sum, order) -> order.sumPrice(sum), Integer::sum);
+    }
+
 }

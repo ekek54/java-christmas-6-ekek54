@@ -66,4 +66,8 @@ public class Menu {
     public String getName() {
         return name;
     }
+
+    public int calculatePrice(int count) {
+        return price * count;
+    }
 }

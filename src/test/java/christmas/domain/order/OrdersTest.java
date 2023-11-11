@@ -66,4 +66,25 @@ class OrdersTest {
         // then
         assertThat(order).isNotNull();
     }
+
+    @Test
+    @DisplayName("총 주문 금액 계산 테스트")
+    void calculateTotalPrice() {
+        // given
+        /*
+        양송이수프 10개 60,000원
+        레드와인 5개 300,000원
+        샴페인 5개 125,000원
+        총 485,000원
+        * */
+        List<Order> orders = List.of(
+                new Order("양송이수프", 10),
+                new Order("레드와인", 5),
+                new Order("샴페인", 5));
+        Orders order = new Orders(orders);
+        // when
+        int totalPrice = order.calculateTotalPrice();
+        // then
+        assertThat(totalPrice).isEqualTo(485_000);
+    }
 }
