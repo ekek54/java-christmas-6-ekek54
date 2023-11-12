@@ -34,4 +34,9 @@ public class TestEvent implements Event {
     public Map<Menu, Integer> giftMenus(Orders orders) {
         return Collections.unmodifiableMap(giftMenus);
     }
+
+    @Override
+    public String getName() {
+        return "테스트 이벤트";
+    }
 }

@@ -66,4 +66,9 @@ public class EventService {
     private void mergeGiftMenus(HashMap<Menu, Integer> result, Map<Menu, Integer> giftMenu) {
         giftMenu.forEach((menu, count) -> result.merge(menu, count, Integer::sum));
     }
+
+    public Map<String, Integer> appliedEventLogs(VisitDate visitDate, Orders orders) {
+        return appliedEvents(visitDate, orders).stream()
+                .collect(HashMap::new, (map, event) -> map.put(event.getName(), event.eventPrice(visitDate, orders)), HashMap::putAll);
+    }
 }

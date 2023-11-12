@@ -12,4 +12,8 @@ public interface Event {
     int giftPrice(Orders orders);
     Map<Menu, Integer> giftMenus(Orders orders);
     String getName();
+
+    default int eventPrice(VisitDate visitDate, Orders orders) {
+        return discountPrice(visitDate, orders) + giftPrice(orders);
+    }
 }
