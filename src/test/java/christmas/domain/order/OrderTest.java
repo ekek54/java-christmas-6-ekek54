@@ -43,12 +43,12 @@ class OrderTest {
     }
 
     @Test
-    @DisplayName("음료 주문이면 true를 반환한다.")
+    @DisplayName("주문의 카테고리를 확인한다.")
     void isDrink() {
         // given
         Order drinkOrder = new Order("제로콜라", 1);
         // when
-        boolean isDrink = drinkOrder.isDrink();
+        boolean isDrink = drinkOrder.isSameCategory(Category.DRINK);
         // then
         assertThat(isDrink).isTrue();
     }

@@ -70,4 +70,8 @@ public class Menu {
     public int calculatePrice(int count) {
         return price * count;
     }
+
+    public boolean isSameCategory(Category category) {
+        return this.category == category;
+    }
 }

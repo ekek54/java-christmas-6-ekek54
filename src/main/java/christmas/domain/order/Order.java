@@ -54,4 +54,7 @@ public class Order {
     public int sumPrice(int sum) {
         return sum + menu.calculatePrice(count);
     }
+    public boolean isSameCategory(Category category) {
+        return menu.isSameCategory(category);
+    }
 }

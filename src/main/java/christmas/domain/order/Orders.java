@@ -35,7 +35,7 @@ public class Orders {
     }
 
     private void validateNotOnlyDrink() {
-        if (orders.stream().allMatch(Order::isDrink)) {
+        if (orders.stream().allMatch(order -> order.isSameCategory(Category.DRINK))) {
             throw new IllegalArgumentException(NOT_ONLY_DRINK_ERROR_MESSAGE);
         }
     }
