@@ -15,24 +15,28 @@ import org.junit.jupiter.api.Test;
 class EventServiceTest {
     private final EventService eventService = new EventService(List.of(new TestEvent()));
     private final EventService eventServiceWithMultiEvent = new EventService(List.of(new TestEvent(), new TestEvent()));
+    
+    // 10000원 이상 주문
     private final Orders eventOrder = new Orders(List.of(
             new Order("양송이수프", 2),
             new Order("제로콜라", 1)
     ));
 
+    // 10000원 미만 주문
     private final Orders nonEventOrder = new Orders(List.of(
             new Order("양송이수프", 1),
             new Order("제로콜라", 1)
     ));
+
+    private final VisitDate christmas = VisitDate.of(25);
 
 
     @Test
     @DisplayName("총 주문 금액이 10000원 미만인 경우 할인이 적용되지 않는다.")
     void totalDiscountPrice() {
         // given
-        VisitDate christmas = VisitDate.of(25);
         // when
-        int discountPrice = eventService.totalEventPrice(nonEventOrder, christmas);
+        int discountPrice = eventService.totalEventPrice(christmas, nonEventOrder);
         // then
         assertThat(discountPrice).isEqualTo(0);
     }
@@ -41,13 +45,8 @@ class EventServiceTest {
     @DisplayName("총 주문 금액이 10000원 이상인 경우 할인이 적용된다.")
     void totalDiscountPriceEventApplied() {
         // given
-        Orders orders = new Orders(List.of(
-                new Order("양송이수프", 2),
-                new Order("제로콜라", 1)
-        ));
-        VisitDate visitDate = VisitDate.of(25);
         // when
-        int discountPrice = eventService.totalEventPrice(orders, visitDate);
+        int discountPrice = eventService.totalEventPrice(christmas, eventOrder);
         // then
         assertThat(discountPrice).isNotZero();
     }
@@ -56,9 +55,8 @@ class EventServiceTest {
     @DisplayName("총 주문 금액이 10000원 이상인 경우 사은품이 증정된다. - 사은품 목록 확인")
     void totalGiftMenusEventApplied() {
         // given
-        VisitDate visitDate = VisitDate.of(25);
         // when
-        Map<Menu, Integer> giftMenus = eventService.totalGiftMenus(eventOrder, visitDate);
+        Map<Menu, Integer> giftMenus = eventService.totalGiftMenus(christmas, eventOrder);
         // then
         assertThat(giftMenus).isNotEmpty();
     }
@@ -67,9 +65,8 @@ class EventServiceTest {
     @DisplayName("총 주문 금액이 10000원 이상인 경우 사은품이 증정된다. - 사은품 가격 확인")
     void totalGiftPriceEventApplied() {
         // given
-        VisitDate visitDate = VisitDate.of(25);
         // when
-        int giftPrice = eventService.totalGiftPrice(eventOrder, visitDate);
+        int giftPrice = eventService.totalGiftPrice(christmas, eventOrder);
         // then
         assertThat(giftPrice).isNotZero();
     }
@@ -78,11 +75,9 @@ class EventServiceTest {
     @DisplayName("적용 가능한 모든 이벤트를 적용한다.")
     void totalDiscountPriceWithMultiEvent() {
         // given
-        VisitDate visitDate = VisitDate.of(25);
-
         // when
-        int totalPriceSingleEvent = eventService.totalEventPrice(eventOrder, visitDate);
-        int totalPriceDoubleEvent = eventServiceWithMultiEvent.totalEventPrice(eventOrder, visitDate);
+        int totalPriceSingleEvent = eventService.totalEventPrice(christmas, eventOrder);
+        int totalPriceDoubleEvent = eventServiceWithMultiEvent.totalEventPrice(christmas, eventOrder);
 
         // then
         assertThat(totalPriceDoubleEvent == 2 * totalPriceSingleEvent).isTrue();

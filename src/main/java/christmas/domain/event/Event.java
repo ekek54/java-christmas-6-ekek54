@@ -6,7 +6,7 @@ import christmas.vo.VisitDate;
 import java.util.Map;
 
 public interface Event {
-    boolean isApplyAt(VisitDate visitDate);
+    boolean isApplied(VisitDate visitDate, Orders orders);
 
     int discountPrice(Orders orders);
     int giftPrice(Orders orders);

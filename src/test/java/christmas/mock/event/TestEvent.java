@@ -16,7 +16,7 @@ public class TestEvent implements Event {
 
     private final Map<Menu, Integer> giftMenus = Map.of(Menu.of("샴페인"), 1);
     @Override
-    public boolean isApplyAt(VisitDate visitDate) {
+    public boolean isApplied(VisitDate visitDate, Orders orders) {
         return visitDate.isChristmas();
     }
 

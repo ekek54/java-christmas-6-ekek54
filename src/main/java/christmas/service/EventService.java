@@ -16,43 +16,43 @@ public class EventService {
         this.events = events;
     }
 
-    public int totalEventPrice(Orders orders, VisitDate visitDate) {
-        return totalDiscountPrice(orders, visitDate) + totalGiftPrice(orders, visitDate);
+    public int totalEventPrice(VisitDate visitDate, Orders orders) {
+        return totalDiscountPrice(visitDate, orders) + totalGiftPrice(visitDate, orders);
     }
 
-    public int totalDiscountPrice(Orders orders, VisitDate visitDate) {
-        if (!isEventApply(orders.calculateTotalPrice())) {
+    public int totalDiscountPrice(VisitDate visitDate, Orders orders) {
+        if (lessThanApplyPrice(orders.calculateTotalPrice())) {
             return 0;
         }
-        return appliedEvents(visitDate).stream()
+        return appliedEvents(visitDate, orders).stream()
                 .mapToInt(event -> event.discountPrice(orders))
                 .sum();
     }
 
-    public int totalGiftPrice(Orders orders, VisitDate visitDate) {
-        if (!isEventApply(orders.calculateTotalPrice())) {
+    public int totalGiftPrice(VisitDate visitDate, Orders orders) {
+        if (lessThanApplyPrice(orders.calculateTotalPrice())) {
             return 0;
         }
-        return appliedEvents(visitDate).stream()
+        return appliedEvents(visitDate, orders).stream()
                 .mapToInt(event -> event.giftPrice(orders))
                 .sum();
     }
 
-    private boolean isEventApply(int totalPrice) {
-        return totalPrice >= EVENT_APPLY_PRICE;
+    private boolean lessThanApplyPrice(int totalPrice) {
+        return totalPrice < EVENT_APPLY_PRICE;
     }
 
-    private List<Event> appliedEvents(VisitDate visitDate) {
+    private List<Event> appliedEvents(VisitDate visitDate, Orders orders) {
         return events.stream()
-                .filter(event -> event.isApplyAt(visitDate))
+                .filter(event -> event.isApplied(visitDate, orders))
                 .toList();
     }
 
-    public Map<Menu, Integer> totalGiftMenus(Orders orders, VisitDate visitDate) {
-        if (!isEventApply(orders.calculateTotalPrice())) {
+    public Map<Menu, Integer> totalGiftMenus(VisitDate visitDate, Orders orders) {
+        if (lessThanApplyPrice(orders.calculateTotalPrice())) {
             return new HashMap<>();
         }
-        List<Map<Menu, Integer>> giftMenusGroup = appliedEvents(visitDate).stream()
+        List<Map<Menu, Integer>> giftMenusGroup = appliedEvents(visitDate, orders).stream()
                 .map(event -> event.giftMenus(orders)).toList();
         return mergeGiftMenusGroup(giftMenusGroup);
     }
