@@ -39,10 +39,6 @@ public class Order {
         return sum + count;
     }
 
-    public boolean isDrink() {
-        return menu.isDrink();
-    }
-
     public String getMenuName() {
         return menu.getName();
     }

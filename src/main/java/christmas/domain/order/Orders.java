@@ -44,4 +44,10 @@ public class Orders {
         return orders.stream()
                 .reduce(0, (sum, order) -> order.sumPrice(sum), Integer::sum);
     }
+
+    public int sumOfCountFilterBy(Category category) {
+        return orders.stream()
+                .filter(order -> order.isSameCategory(category))
+                .reduce(0, (sum, order) -> order.sumCount(sum), Integer::sum);
+    }
 }
