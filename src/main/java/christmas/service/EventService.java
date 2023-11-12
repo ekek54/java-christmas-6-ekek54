@@ -25,7 +25,7 @@ public class EventService {
             return 0;
         }
         return appliedEvents(visitDate, orders).stream()
-                .mapToInt(event -> event.discountPrice(orders))
+                .mapToInt(event -> event.discountPrice(visitDate, orders))
                 .sum();
     }
 

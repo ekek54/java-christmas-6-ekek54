@@ -62,7 +62,7 @@ class WeekdayEventTest {
                 new Order("아이스크림", 1)
         ));
         // when
-        int discountPrice = weekdayEvent.discountPrice(orders);
+        int discountPrice = weekdayEvent.discountPrice(null, orders);
         // then
         assertThat(discountPrice).isEqualTo(2023 * 3);
     }

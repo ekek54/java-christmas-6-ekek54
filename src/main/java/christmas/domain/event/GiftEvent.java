@@ -22,7 +22,7 @@ public class GiftEvent implements Event{
     }
 
     @Override
-    public int discountPrice(Orders orders) {
+    public int discountPrice(VisitDate visitDate, Orders orders) {
         return NO_DISCOUNT_PRICE;
     }
 

@@ -16,7 +16,7 @@ public class WeekdayEvent implements Event{
     }
 
     @Override
-    public int discountPrice(Orders orders) {
+    public int discountPrice(VisitDate visitDate, Orders orders) {
         return orders.sumOfCountFilterBy(Category.DESSERT) * DISCOUNT_PRICE_PER_DESSERT;
     }
 

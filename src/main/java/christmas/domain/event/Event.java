@@ -8,7 +8,7 @@ import java.util.Map;
 public interface Event {
     boolean isApplied(VisitDate visitDate, Orders orders);
 
-    int discountPrice(Orders orders);
+    int discountPrice(VisitDate visitDate, Orders orders);
     int giftPrice(Orders orders);
     Map<Menu, Integer> giftMenus(Orders orders);
 

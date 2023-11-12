@@ -49,7 +49,7 @@ class GiftEventTest {
                 new Order("티본스테이크", 3)
         ));
         // when
-        int discountPrice = new GiftEvent().discountPrice(orders);
+        int discountPrice = new GiftEvent().discountPrice(null, orders);
         // then
         assertThat(discountPrice).isEqualTo(0);
     }
