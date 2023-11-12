@@ -9,6 +9,7 @@ import java.util.Map;
 public class SpecialEvent implements Event{
     private static final int SPECIAL_DISCOUNT_PRICE = 1000;
     private static final int NO_GIFT_PRICE = 0;
+    private static final String name = "특별 할인";
 
     @Override
     public boolean isApplied(VisitDate visitDate, Orders orders) {
@@ -28,5 +29,10 @@ public class SpecialEvent implements Event{
     @Override
     public Map<Menu, Integer> giftMenus(Orders orders) {
         return Collections.unmodifiableMap(Map.of());
+    }
+
+    @Override
+    public String getName() {
+        return SpecialEvent.name;
     }
 }

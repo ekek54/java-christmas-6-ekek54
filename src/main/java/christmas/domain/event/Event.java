@@ -11,5 +11,5 @@ public interface Event {
     int discountPrice(VisitDate visitDate, Orders orders);
     int giftPrice(Orders orders);
     Map<Menu, Integer> giftMenus(Orders orders);
-
+    String getName();
 }

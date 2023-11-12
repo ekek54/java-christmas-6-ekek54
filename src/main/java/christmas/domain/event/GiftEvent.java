@@ -9,6 +9,7 @@ import java.util.Map;
 public class GiftEvent implements Event{
     private static final int EVENT_APPLIED_PRICE = 120_000;
     private static final int NO_DISCOUNT_PRICE = 0;
+    private static final String name = "증정 이벤트";
 
     private final Map<Menu, Integer> giftMenus = Map.of(Menu.of("샴페인"), 1);
 
@@ -34,5 +35,10 @@ public class GiftEvent implements Event{
     @Override
     public Map<Menu, Integer> giftMenus(Orders orders) {
         return Collections.unmodifiableMap(giftMenus);
+    }
+
+    @Override
+    public String getName() {
+        return GiftEvent.name;
     }
 }

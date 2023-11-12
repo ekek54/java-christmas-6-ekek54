@@ -19,4 +19,6 @@ public class OutputView {
     public void printTotalPrice(int totalPrice) {
         System.out.println(String.format(TOTAL_PRICE_FORMAT, totalPrice));
     }
+
+
 }

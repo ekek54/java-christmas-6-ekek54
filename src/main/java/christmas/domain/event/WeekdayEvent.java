@@ -10,6 +10,7 @@ import java.util.Map;
 public class WeekdayEvent implements Event{
     private static final int DISCOUNT_PRICE_PER_DESSERT = 2023;
     private static final int NO_GIFT_PRICE = 0;
+    private static final String name = "평일 할인";
     @Override
     public boolean isApplied(VisitDate visitDate, Orders orders) {
         return visitDate.isWeekday();
@@ -28,5 +29,10 @@ public class WeekdayEvent implements Event{
     @Override
     public Map<Menu, Integer> giftMenus(Orders orders) {
         return Collections.unmodifiableMap(Map.of());
+    }
+
+    @Override
+    public String getName() {
+        return WeekdayEvent.name;
     }
 }
