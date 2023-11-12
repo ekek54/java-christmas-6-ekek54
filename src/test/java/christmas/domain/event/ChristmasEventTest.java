@@ -6,7 +6,7 @@ import christmas.vo.VisitDate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ChristmasEventTes {
+class ChristmasEventTest {
     private final ChristmasEvent christmasEvent = new ChristmasEvent();
 
     @Test
