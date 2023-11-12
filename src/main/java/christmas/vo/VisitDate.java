@@ -54,4 +54,12 @@ public class VisitDate {
     public boolean isSunday() {
         return dayOfWeek == DayOfWeek.SUNDAY;
     }
+
+    public int remainDaysUntil(VisitDate visitDate) {
+        return visitDate.remainDaysUntil(this.date);
+    }
+
+    public int remainDaysUntil(int date) {
+        return this.date - date;
+    }
 }
