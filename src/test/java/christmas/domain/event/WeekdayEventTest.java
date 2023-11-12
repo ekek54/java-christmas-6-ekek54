@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WeekdayEventTest {
+    private final WeekdayEvent weekdayEvent = new WeekdayEvent();
 
     @Test
     @DisplayName("방문일이 평일이면 이벤트를 적용한다.")
@@ -27,7 +28,7 @@ class WeekdayEventTest {
         ));
         // when
         List<Boolean> isApplied = weekdays.stream()
-                .map(weekday -> new WeekdayEvent().isApplied(weekday, orders)).toList();
+                .map(weekday -> weekdayEvent.isApplied(weekday, orders)).toList();
         // then
         assertThat(isApplied).containsOnly(true);
     }
@@ -45,7 +46,7 @@ class WeekdayEventTest {
         ));
         // when
         List<Boolean> isApplied = weekdays.stream()
-                .map(weekday -> new WeekdayEvent().isApplied(weekday, orders)).toList();
+                .map(weekday -> weekdayEvent.isApplied(weekday, orders)).toList();
         // then
         assertThat(isApplied).containsOnly(false);
     }
@@ -61,7 +62,7 @@ class WeekdayEventTest {
                 new Order("아이스크림", 1)
         ));
         // when
-        int discountPrice = new WeekdayEvent().discountPrice(orders);
+        int discountPrice = weekdayEvent.discountPrice(orders);
         // then
         assertThat(discountPrice).isEqualTo(2023 * 3);
     }
@@ -76,7 +77,7 @@ class WeekdayEventTest {
                 new Order("아이스크림", 1)
         ));
         // when
-        int giftMenusSize = new WeekdayEvent().giftMenus(orders).size();
+        int giftMenusSize = weekdayEvent.giftMenus(orders).size();
         // then
         assertThat(giftMenusSize).isEqualTo(0);
     }
