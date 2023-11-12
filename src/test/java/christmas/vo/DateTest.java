@@ -48,7 +48,7 @@ class DateTest {
             VisitDate.of(7)
         );
         // when
-        List<Boolean> isWeekdays = weekdays.stream().map(VisitDate::isWeekdays).toList();
+        List<Boolean> isWeekdays = weekdays.stream().map(VisitDate::isWeekday).toList();
         // then
         assertThat(isWeekdays).containsOnly(true);
     }

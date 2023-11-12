@@ -43,7 +43,7 @@ public class VisitDate {
         return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
     }
 
-    public boolean isWeekdays() {
+    public boolean isWeekday() {
         return !isWeekend();
     }
 
