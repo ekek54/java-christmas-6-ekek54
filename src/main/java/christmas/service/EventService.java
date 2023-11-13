@@ -74,4 +74,8 @@ public class EventService {
     public Badge chooseBadge(VisitDate visitDate, Orders orders) {
         return Badge.of(this.totalEventPrice(visitDate, orders));
     }
+
+    public int calculatePaymentPrice(VisitDate visitDate, Orders orders) {
+        return orders.calculateTotalPrice() - this.totalDiscountPrice(visitDate, orders);
+    }
 }
