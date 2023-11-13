@@ -87,12 +87,12 @@ class ChristmasEventTest {
     }
 
     @Test
-    @DisplayName("이벤트 이름은 크리스마스 이벤트이다.")
+    @DisplayName("이벤트 이름은 크리스마스 디데이 할인이다.")
     void getName() {
         // given
         // when
         String name = christmasEvent.getName();
         // then
-        assertThat(name).isEqualTo("크리스마스 이벤트");
+        assertThat(name).isEqualTo("크리스마스 디데이 할인");
     }
 }
