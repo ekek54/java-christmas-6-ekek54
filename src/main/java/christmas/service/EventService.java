@@ -69,6 +69,10 @@ public class EventService {
 
     public Map<String, Integer> appliedEventLogs(VisitDate visitDate, Orders orders) {
         return appliedEvents(visitDate, orders).stream()
-                .collect(HashMap::new, (map, event) -> map.put(event.getName(), event.eventPrice(visitDate, orders)), HashMap::putAll);
+                .collect(
+                        HashMap::new,
+                        (map, event) -> map.put(event.getName(), event.eventPrice(visitDate, orders)),
+                        HashMap::putAll
+                );
     }
 }
