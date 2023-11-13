@@ -59,10 +59,6 @@ public class Menu {
         return this.name.equals(name);
     }
 
-    public boolean isDrink() {
-        return category == Category.DRINK;
-    }
-
     public String getName() {
         return name;
     }
