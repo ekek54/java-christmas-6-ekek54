@@ -35,6 +35,16 @@ public class Controller {
         eventPreview(visitDate, orders);
     }
 
+    private VisitDate bookVisitDate() {
+        int inputVisitDate = inputView.readVisitDate();
+        return VisitDate.of(inputVisitDate);
+    }
+
+    private Orders getOrder() {
+        List<OrderDTO> orderDTOS = inputView.readOrders();
+        return OrderDTO.toOrders(orderDTOS);
+    }
+
     private void eventPreview(VisitDate visitDate, Orders orders) {
         outputView.printEventPreviewMessage(visitDate.getDate());
         orderLog(orders);
@@ -67,15 +77,5 @@ public class Controller {
     private void eventBadge(VisitDate visitDate, Orders orders) {
         BadgeDTO badge = BadgeDTO.of(eventService.chooseBadge(visitDate, orders));
         outputView.printBadge(badge);
-    }
-
-    private Orders getOrder() {
-        List<OrderDTO> orderDTOS = inputView.readOrders();
-        return OrderDTO.toOrders(orderDTOS);
-    }
-
-    private VisitDate bookVisitDate() {
-        int inputVisitDate = inputView.readVisitDate();
-        return VisitDate.of(inputVisitDate);
     }
 }
