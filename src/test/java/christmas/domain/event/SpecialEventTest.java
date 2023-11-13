@@ -55,4 +55,15 @@ class SpecialEventTest {
         // then
         assertThat(giftPrice).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("이벤트 이름은 특별 할인이다.")
+    void name() {
+        // given
+        // when
+        String name = specialEvent.getName();
+        // then
+        assertThat(name).isEqualTo("특별 할인");
+    }
+
 }

@@ -99,4 +99,14 @@ class WeekendEventTest {
         // then
         assertThat(giftPrice).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("이벤트 이름은 주말 할인이다.")
+    void name() {
+        // given
+        // when
+        String name = weekendEvent.getName();
+        // then
+        assertThat(name).isEqualTo("주말 할인");
+    }
 }

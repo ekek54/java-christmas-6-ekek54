@@ -67,7 +67,8 @@ class ChristmasEventTest {
     }
 
     @Test
-    void giftPrice() {
+    @DisplayName("사은품은 없다. - 사은품 목록 확인")
+    void giftMenus() {
         // given
         // when
         int giftMenusSize = christmasEvent.giftMenus(null).size();
@@ -77,11 +78,21 @@ class ChristmasEventTest {
 
     @Test
     @DisplayName("사은품은 없다. - 사은품 가격 확인")
-    void giftMenus() {
+    void giftPrice() {
         // given
         // when
         int giftPrice = christmasEvent.giftPrice(null);
         // then
         assertThat(giftPrice).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("이벤트 이름은 크리스마스 이벤트이다.")
+    void getName() {
+        // given
+        // when
+        String name = christmasEvent.getName();
+        // then
+        assertThat(name).isEqualTo("크리스마스 이벤트");
     }
 }

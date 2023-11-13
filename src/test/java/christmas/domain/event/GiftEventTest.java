@@ -83,4 +83,14 @@ class GiftEventTest {
                 )
         );
     }
+
+    @Test
+    @DisplayName("이벤트 이름은 증정 이벤트이다")
+    void name() {
+        // given
+        // when
+        String name = new GiftEvent().getName();
+        // then
+        assertThat(name).isEqualTo("증정 이벤트");
+    }
 }
