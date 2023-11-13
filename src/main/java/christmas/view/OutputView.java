@@ -17,6 +17,7 @@ public class OutputView {
     public void printOrders(List<OrderDTO> orders) {
         System.out.println("<주문 메뉴>");
         orders.forEach(this::printOrder);
+        printEmptyLine();
     }
 
     private void printOrder(OrderDTO orderDTO) {
@@ -24,12 +25,20 @@ public class OutputView {
     }
 
     public void printTotalPrice(int totalPrice) {
+        System.out.println("<할인 전 총주문 금액>");
         System.out.println(String.format(TOTAL_PRICE_FORMAT, totalPrice));
+        printEmptyLine();
     }
 
     public void printGifts(List<GiftDTO> gifts) {
         System.out.println("<증정 메뉴>");
+        if (gifts.isEmpty()) {
+            System.out.println("없음");
+            printEmptyLine();
+            return;
+        }
         gifts.forEach(this::printGift);
+        printEmptyLine();
     }
 
     private void printGift(GiftDTO giftDTO) {
@@ -38,7 +47,13 @@ public class OutputView {
 
     public void printEventLogs(List<EventLogDTO> eventLogs) {
         System.out.println("<혜택 내역>");
+        if (eventLogs.isEmpty()) {
+            System.out.println("없음");
+            printEmptyLine();
+            return;
+        }
         eventLogs.forEach(this::printEventLog);
+        printEmptyLine();
     }
 
     private void printEventLog(EventLogDTO eventLogDTO) {
@@ -46,13 +61,15 @@ public class OutputView {
     }
 
     public void printTotalDiscountPrice(int totalDiscountPrice) {
-        System.out.println("<총 할인 금액>");
+        System.out.println("<총혜택 금액>");
         System.out.println(String.format(DISCOUNT_PRICE_FORMAT, totalDiscountPrice));
+        printEmptyLine();
     }
 
     public void printPaymentAmount(int paymentAmount) {
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.println(String.format(PRICE_FORMAT, paymentAmount));
+        printEmptyLine();
     }
 
     public void printBadge(BadgeDTO badgeDTO) {
@@ -66,5 +83,10 @@ public class OutputView {
 
     public void printEventPreviewMessage(int date) {
         System.out.println(String.format("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!", date));
+        printEmptyLine();
+    }
+
+    private void printEmptyLine() {
+        System.out.println();
     }
 }
