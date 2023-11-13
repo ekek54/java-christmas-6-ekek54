@@ -5,7 +5,7 @@ import christmas.dto.OrderDTO;
 import java.util.List;
 
 public class InputView {
-    private static final String DATE_REGEXP = "^[1-31]$";
+    private static final String DATE_REGEXP = "^[0-9]+$";
     private static final String DATE_PATTERN_ERROR_MESSAGE = "유효하지 않은 날짜입니다.";
     private static final String ORDERS_REGEXP = "^[가-힣]+-[0-9]+(,[가-힣]+-[0-9]+)*$";
     private static final String ORDERS_PATTERN_ERROR_MESSAGE = "메뉴 형식이 올바르지 않습니다.";
