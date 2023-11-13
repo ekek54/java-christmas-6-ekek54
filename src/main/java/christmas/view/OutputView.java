@@ -1,9 +1,9 @@
 package christmas.view;
 
+import christmas.dto.BadgeDTO;
 import christmas.dto.EventLogDTO;
-import christmas.dto.OrderDTO;
 import christmas.dto.GiftDTO;
-import java.text.DecimalFormat;
+import christmas.dto.OrderDTO;
 import java.util.List;
 
 public class OutputView {
@@ -53,5 +53,10 @@ public class OutputView {
     public void printPaymentAmount(int paymentAmount) {
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.println(String.format(PRICE_FORMAT, paymentAmount));
+    }
+
+    public void printBadge(BadgeDTO badgeDTO) {
+        System.out.println("<12월 이벤트 뱃지>");
+        System.out.println(badgeDTO.getName());
     }
 }
