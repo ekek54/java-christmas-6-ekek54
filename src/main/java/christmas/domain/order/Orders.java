@@ -1,5 +1,7 @@
 package christmas.domain.order;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,5 +51,9 @@ public class Orders {
         return orders.stream()
                 .filter(order -> order.isSameCategory(category))
                 .reduce(0, (sum, order) -> order.sumCount(sum), Integer::sum);
+    }
+
+    public List<Order> getOrders() {
+        return Collections.unmodifiableList(new ArrayList<>(orders));
     }
 }
