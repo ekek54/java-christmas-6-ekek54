@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.event.Badge;
 import christmas.domain.event.Event;
 import christmas.domain.order.Menu;
 import christmas.domain.order.Orders;
@@ -74,5 +75,9 @@ public class EventService {
                         (map, event) -> map.put(event.getName(), event.eventPrice(visitDate, orders)),
                         HashMap::putAll
                 );
+    }
+
+    public Badge chooseBadge(VisitDate visitDate, Orders orders) {
+        return Badge.of(this.totalEventPrice(visitDate, orders));
     }
 }
