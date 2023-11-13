@@ -12,7 +12,7 @@ public class InputView {
     private static final String ORDERS_DELIMITER = ",";
     private static final String ORDER_DELIMITER = "-";
 
-    public int readBookDate() {
+    public int readVisitDate() {
         System.out.println("12 월 중 식장 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
         return readDate();
     }
