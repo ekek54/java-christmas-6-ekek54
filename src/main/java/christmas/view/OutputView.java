@@ -60,7 +60,7 @@ public class OutputView {
         System.out.println(String.format(EVENT_LOG_FORMAT, eventLogDTO.getName(), eventLogDTO.getDiscountPrice()));
     }
 
-    public void printTotalDiscountPrice(int totalDiscountPrice) {
+    public void printTotalEventPrice(int totalDiscountPrice) {
         System.out.println("<총혜택 금액>");
         System.out.println(String.format(DISCOUNT_PRICE_FORMAT, totalDiscountPrice));
         printEmptyLine();
@@ -73,7 +73,7 @@ public class OutputView {
     }
 
     public void printBadge(BadgeDTO badgeDTO) {
-        System.out.println("<12월 이벤트 뱃지>");
+        System.out.println("<12월 이벤트 배지>");
         System.out.println(badgeDTO.getName());
     }
 
