@@ -52,4 +52,37 @@ class OrderTest {
         // then
         assertThat(isDrink).isTrue();
     }
+
+    @Test
+    @DisplayName("주문의 메뉴 이름을 확인한다.")
+    void getMenuName() {
+        // given
+        Order drinkOrder = new Order("제로콜라", 1);
+        // when
+        String menuName = drinkOrder.getMenuName();
+        // then
+        assertThat(menuName).isEqualTo("제로콜라");
+    }
+
+    @Test
+    @DisplayName("주문의 메뉴 개수를 확인한다.")
+    void getCount() {
+        // given
+        Order drinkOrder = new Order("제로콜라", 1);
+        // when
+        int count = drinkOrder.getCount();
+        // then
+        assertThat(count).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("다른 타입과 비교하면 false를 반환한다.")
+    void equalsOtherType() {
+        // given
+        Order drinkOrder = new Order("제로콜라", 1);
+        // when
+        boolean equals = drinkOrder.equals("제로콜라");
+        // then
+        assertThat(equals).isFalse();
+    }
 }
