@@ -14,6 +14,7 @@ public class VisitDate {
     private static final int LAST_DATE = 31;
     private static final String ERROR_MESSAGE = "유효하지 않은 날짜입니다.";
     private static final List<VisitDate> visitDates = new ArrayList<>();
+
     private final int date;
     private final DayOfWeek dayOfWeek;
 
@@ -61,5 +62,9 @@ public class VisitDate {
 
     public int remainDaysUntil(int date) {
         return this.date - date;
+    }
+
+    public int getDate() {
+        return date;
     }
 }
