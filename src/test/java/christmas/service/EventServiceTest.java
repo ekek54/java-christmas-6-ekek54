@@ -62,6 +62,17 @@ class EventServiceTest {
     }
 
     @Test
+    @DisplayName("총 주문 금액이 10000원 미만인 경우 사은품이 증정되지 않는다. - 사은품 목록 확인")
+    void totalGiftMenusEventNotApplied() {
+        // given
+        // when
+        Map<Menu, Integer> giftMenus = eventService.totalGiftMenus(christmas, nonEventOrder);
+        // then
+        assertThat(giftMenus).isEmpty();
+    }
+
+
+    @Test
     @DisplayName("총 주문 금액이 10000원 이상인 경우 사은품이 증정된다. - 사은품 가격 확인")
     void totalGiftPriceEventApplied() {
         // given
@@ -81,5 +92,15 @@ class EventServiceTest {
 
         // then
         assertThat(totalPriceDoubleEvent == 2 * totalPriceSingleEvent).isTrue();
+    }
+
+    @Test
+    @DisplayName("적용된 이벤트 로그를 반환한다.")
+    void appliedEvents() {
+        // given
+        // when
+        Map<String, Integer> eventLogs = eventService.appliedEventLogs(christmas, eventOrder);
+        // then
+        assertThat(eventLogs).containsExactlyEntriesOf(Map.of("테스트 이벤트", 26000));
     }
 }
