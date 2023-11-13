@@ -22,37 +22,31 @@ public class EventService {
     }
 
     public int totalDiscountPrice(VisitDate visitDate, Orders orders) {
-        if (lessThanApplyPrice(orders.calculateTotalPrice())) {
-            return 0;
-        }
         return appliedEvents(visitDate, orders).stream()
                 .mapToInt(event -> event.discountPrice(visitDate, orders))
                 .sum();
     }
 
     public int totalGiftPrice(VisitDate visitDate, Orders orders) {
-        if (lessThanApplyPrice(orders.calculateTotalPrice())) {
-            return 0;
-        }
         return appliedEvents(visitDate, orders).stream()
                 .mapToInt(event -> event.giftPrice(orders))
                 .sum();
+    }
+
+    private List<Event> appliedEvents(VisitDate visitDate, Orders orders) {
+        if (lessThanApplyPrice(orders.calculateTotalPrice())) {
+            return List.of();
+        }
+        return events.stream()
+                .filter(event -> event.isApplied(visitDate, orders))
+                .toList();
     }
 
     private boolean lessThanApplyPrice(int totalPrice) {
         return totalPrice < EVENT_APPLY_PRICE;
     }
 
-    private List<Event> appliedEvents(VisitDate visitDate, Orders orders) {
-        return events.stream()
-                .filter(event -> event.isApplied(visitDate, orders))
-                .toList();
-    }
-
     public Map<Menu, Integer> totalGiftMenus(VisitDate visitDate, Orders orders) {
-        if (lessThanApplyPrice(orders.calculateTotalPrice())) {
-            return new HashMap<>();
-        }
         List<Map<Menu, Integer>> giftMenusGroup = appliedEvents(visitDate, orders).stream()
                 .map(event -> event.giftMenus(orders)).toList();
         return mergeGiftMenusGroup(giftMenusGroup);
