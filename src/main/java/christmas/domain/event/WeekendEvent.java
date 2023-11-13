@@ -13,7 +13,7 @@ public class WeekendEvent implements Event{
     private static final String name = "주말 할인";
     @Override
     public boolean isApplied(VisitDate visitDate, Orders orders) {
-        return visitDate.isWeekend();
+        return visitDate.isWeekend() && mainExist(orders);
     }
 
     @Override
@@ -34,5 +34,9 @@ public class WeekendEvent implements Event{
     @Override
     public String getName() {
         return WeekendEvent.name;
+    }
+
+    private boolean mainExist(Orders orders) {
+        return orders.sumOfCountFilterBy(Category.MAIN) > 0;
     }
 }

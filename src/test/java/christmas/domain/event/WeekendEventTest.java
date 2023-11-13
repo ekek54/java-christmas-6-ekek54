@@ -15,7 +15,7 @@ class WeekendEventTest {
     private final WeekendEvent weekendEvent = new WeekendEvent();
 
     @Test
-    @DisplayName("방문일이 주말이면 이벤트를 적용한다.")
+    @DisplayName("방문일이 주말이고 메인 메뉴가 있으면 이벤트를 적용한다.")
     void isApplied() {
         // given
         List<VisitDate> weekend = List.of(
@@ -49,6 +49,25 @@ class WeekendEventTest {
         ));
         // when
         List<Boolean> isApplies = weekdays.stream().map(
+                visitDate -> weekendEvent.isApplied(visitDate, orders)
+        ).toList();
+        // then
+        assertThat(isApplies).containsOnly(false);
+    }
+
+    @Test
+    @DisplayName("주말인데 메인 메뉴가 없으면 이벤트를 적용하지 않는다.")
+    void isNotAppliedMainNotExist() {
+        // given
+        List<VisitDate> weekend = List.of(
+                VisitDate.of(1), // 금
+                VisitDate.of(2)  // 토
+        );
+        Orders orders = new Orders(List.of(
+                new Order("초코케이크", 3)
+        ));
+        // when
+        List<Boolean> isApplies = weekend.stream().map(
                 visitDate -> weekendEvent.isApplied(visitDate, orders)
         ).toList();
         // then
