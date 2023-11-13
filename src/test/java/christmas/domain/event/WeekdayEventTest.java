@@ -13,7 +13,7 @@ class WeekdayEventTest {
     private final WeekdayEvent weekdayEvent = new WeekdayEvent();
 
     @Test
-    @DisplayName("방문일이 평일이면 이벤트를 적용한다.")
+    @DisplayName("방문일이 평일이고 메뉴에 디저트가 존재하면 이벤트를 적용한다.")
     void isApplied() {
         // given
         List<VisitDate> weekdays = List.of(
@@ -24,7 +24,8 @@ class WeekdayEventTest {
                 VisitDate.of(7)  // 목
         );
         Orders orders = new Orders(List.of(
-                new Order("티본스테이크", 3)
+                new Order("티본스테이크", 3),
+                new Order("초코케이크", 2)
         ));
         // when
         List<Boolean> isApplied = weekdays.stream()
@@ -36,6 +37,25 @@ class WeekdayEventTest {
     @Test
     @DisplayName("방문일이 주말이면 이벤트를 적용하지 않는다.")
     void isNotApplied() {
+        // given
+        List<VisitDate> weekdays = List.of(
+                VisitDate.of(1), // 금
+                VisitDate.of(2)  // 토
+        );
+        Orders orders = new Orders(List.of(
+                new Order("티본스테이크", 3),
+                new Order("초코케이크", 2)
+        ));
+        // when
+        List<Boolean> isApplied = weekdays.stream()
+                .map(weekday -> weekdayEvent.isApplied(weekday, orders)).toList();
+        // then
+        assertThat(isApplied).containsOnly(false);
+    }
+
+    @Test
+    @DisplayName("메뉴에 디저트가 존재하지 않으면 이벤트를 적용하지 않는다.")
+    void isNotAppliedDessertNotExist() {
         // given
         List<VisitDate> weekdays = List.of(
                 VisitDate.of(1), // 금
