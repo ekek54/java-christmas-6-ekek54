@@ -3,7 +3,6 @@ package christmas.domain.event;
 import christmas.domain.order.Menu;
 import christmas.domain.order.Orders;
 import christmas.vo.VisitDate;
-import java.util.Collections;
 import java.util.Map;
 
 public class ChristmasEvent implements Event{
@@ -31,7 +30,7 @@ public class ChristmasEvent implements Event{
 
     @Override
     public Map<Menu, Integer> giftMenus(Orders orders) {
-        return Collections.unmodifiableMap(Map.of());
+        return Map.of();
     }
 
     @Override
