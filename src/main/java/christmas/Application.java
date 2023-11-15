@@ -3,6 +3,7 @@ package christmas;
 import christmas.controller.Controller;
 import christmas.controller.ControllerBuilder;
 import christmas.domain.event.ChristmasEvent;
+import christmas.domain.event.Event;
 import christmas.domain.event.GiftEvent;
 import christmas.domain.event.SpecialEvent;
 import christmas.domain.event.WeekdayEvent;
@@ -21,13 +22,8 @@ public class Application {
         OutputView outputView = new OutputView();
         InputErrorHandler<VisitDate> visitDateInputErrorHandler = new InputErrorHandler<>("유효하지 않은 날짜입니다.");
         InputErrorHandler<Orders> ordersInputErrorHandler = new InputErrorHandler<>("유효하지 않은 주문입니다.");
-        EventService eventService = new EventService(List.of(
-                new ChristmasEvent(),
-                new GiftEvent(),
-                new SpecialEvent(),
-                new WeekdayEvent(),
-                new WeekendEvent()
-        ));
+        List<Event> events = initEvents();
+        EventService eventService = new EventService(events);
         Controller controller = new ControllerBuilder().setInputView(inputView)
                 .setOutputView(outputView)
                 .setEventService(eventService)
@@ -35,5 +31,9 @@ public class Application {
                 .setOrdersHandler(ordersInputErrorHandler)
                 .createController();
         controller.run();
+    }
+
+    private static List<Event> initEvents() {
+        return List.of(new WeekdayEvent(), new WeekendEvent(), new SpecialEvent(), new GiftEvent(), new ChristmasEvent());
     }
 }
